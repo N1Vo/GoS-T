@@ -44,6 +44,20 @@ CastSkillShot(_W,WPred.PredPos.x,WPred.PredPos.y,WPred.PredPos.z)
 end
 end
 end
+
+ function Harass()
+if IWalkConfig.Harass then
+
+          local target = GetTarget(950, DAMAGE_MAGIC)
+  if ValidTarget(target, 950) then
+  
+  local QPred = GetPredictionForPlayer(GetMyHeroPos(),target,GetMoveSpeed(target),math.huge,1200,GetCastRange(myHero,_Q),250,false,true)
+  if CanUseSpell(myHero, _Q) == READY and QPred.HitChance == 1 and Config.Q then
+CastSkillShot(_Q,QPred.PredPos.x,QPred.PredPos.y,QPred.PredPos.z)
+end
+end
+end
+end
 end)
 function Killsteal()
  for i,enemy in pairs(GetEnemyHeroes()) do
@@ -59,6 +73,7 @@ myHeroPos = GetOrigin(myHero)
 if CanUseSpell(myHero, _Q) == READY and DrawingsConfig.DrawQ then DrawCircle(myHeroPos.x,myHeroPos.y,myHeroPos.z,GetCastRange(myHero,_Q),3,100,0xff00ff00) end
 end
 
+ function Harass()
 if IWalkConfig.Harass then
 
           local target = GetTarget(950, DAMAGE_MAGIC)
@@ -69,4 +84,5 @@ if IWalkConfig.Harass then
 CastSkillShot(_Q,QPred.PredPos.x,QPred.PredPos.y,QPred.PredPos.z)
 end
 end
-end)
+end
+end
